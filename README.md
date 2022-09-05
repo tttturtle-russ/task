@@ -34,13 +34,13 @@ go install
 
 ##### 输出如下则安装成功
 
-![](C:\Users\liuhy\AppData\Roaming\Typora\typora-user-images\image-20220905201509659.png)
+![screenshot1](./screenshots/screenshot1.png)
 
 ## 例子 Examples
 
 ``` task show ```
 
-![image-20220905201630240](C:\Users\liuhy\AppData\Roaming\Typora\typora-user-images\image-20220905201630240.png)
+![screenshot2](./screenshots/screenshot2.png)
 
 
 
