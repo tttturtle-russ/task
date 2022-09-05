@@ -34,7 +34,7 @@ go install
 
 ##### 输出如下则安装成功
 
-![screenshot1](https://github.com/tttturtle-russ/task/blob/ca8053626c4a4c89e360e2077326621fd469d219/screenshots/screenshot1.png)
+![screenshot1](./screenshots/screenshot1.png)
 
 ## 例子 Examples
 
