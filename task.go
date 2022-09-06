@@ -1,6 +1,7 @@
 package main
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"github.com/fatih/color"
@@ -9,6 +10,7 @@ import (
 	"io"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -104,11 +106,11 @@ func showTask(c *cli.Context) error {
 	for _, task := range tasks.Tasks {
 		var importanceString string
 		switch task.Importance {
-		case "‼️very important":
+		case "\u001B[31m‼️very important\u001B[0m":
 			importanceString = color.RedString(task.Importance)
-		case "❗️just so so":
+		case "\u001B[36m❗️just so so\u001B[0m":
 			importanceString = color.CyanString(task.Importance)
-		case "❕ doesn't matter":
+		case "\u001B[30m❕ doesn't matter\u001B[0m":
 			importanceString = color.BlackString(task.Importance)
 		}
 		color.Yellow("%-30s%-30s%-30s%-30s", task.Name, task.Todo, task.Deadline.Format("2006-01-02 15-04"), importanceString)
@@ -126,7 +128,8 @@ func addTask(c *cli.Context) error {
 		return err
 	}
 	fmt.Println("input what todo")
-	_, err = fmt.Scanln(&task.Todo)
+	reader := bufio.NewReader(os.Stdin)
+	task.Todo, err = reader.ReadString('\r')
 	if err != nil {
 		log.Println(err)
 		return err
@@ -164,6 +167,7 @@ func addTask(c *cli.Context) error {
 		return err
 	}
 	defer list.Close()
+	task.Todo = strings.TrimSuffix(task.Todo, "\r")
 	tasks.Tasks = append(tasks.Tasks, task)
 	data, err := json.Marshal(tasks)
 	if err != nil {
